@@ -16,19 +16,19 @@
         android:autoSizeTextType="uniform"
         android:text="@string/hello_text" />
 
-    <Button
-        android:id="@+id/hello_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/helloBtn_text" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/pika" />
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/hello_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/helloBtn_text" />
+
+</LinearLayout>
 
 
 

@@ -7,7 +7,6 @@
     <string name="second_fragment_label">Toinen fragmentti</string>
     <string name="next">Seuraava</string>
     <string name="previous">Edellinen</string>
-
     <string name="hello_first_fragment">Heippa ensimmäinen fragmentti</string>
     <string name="hello_second_fragment">Heippa toinen fragmentti. Arg: %1$s</string>
     <string name="helloBtn_text">Klikkaa jos uskallat</string>
