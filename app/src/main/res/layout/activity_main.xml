@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/pika" />
 
+
     <Button
         android:id="@+id/hello_button"
         android:layout_width="wrap_content"

@@ -18,42 +18,47 @@ public class PeliDemo extends AppCompatActivity {
     private ImageButton gameBtn3;
     private ImageButton gameBtn4;
     private FloatingActionButton fabBtn;
+    private int randomNr;
 
-    public class generateRandom {
-        public void main(String args[]) {
-            Random rand = new Random();
-            int rand_int1 = rand.nextInt(5);
-            System.out.println("Random Integers" + rand_int1);
-        }
 
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peli_demo);
 
+        Random rand = new Random();
+        randomNr = rand.nextInt(3)+1;
+        ;
         gameBtn1 = findViewById(R.id.imageButton1);
         gameBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { handleClickEvents(view);}
+            public void onClick(View view) {
+                handleClickEvents(view);
+            }
         });
         gameBtn2 = findViewById(R.id.imageButton2);
         gameBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { handleClickEvents(view);}
-            });
+            public void onClick(View view) {
+                handleClickEvents(view);
+            }
+        });
 
         gameBtn3 = findViewById(R.id.imageButton3);
         gameBtn3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { handleClickEvents(view);}
+            public void onClick(View view) {
+                handleClickEvents(view);
+            }
         });
 
         gameBtn4 = findViewById(R.id.imageButton4);
         gameBtn4.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {handleClickEvents(view);}
+            public void onClick(View view) {
+                handleClickEvents(view);
+            }
         });
 
         fabBtn = findViewById(R.id.fab);
@@ -64,25 +69,42 @@ public class PeliDemo extends AppCompatActivity {
             }
         });
 
-        }
+
+    }
+
     public void handleClickEvents(View view) {
         switch (view.getId()) {
             case R.id.imageButton1:
-            gameBtn1.setVisibility(View.INVISIBLE);
+                if (randomNr == 1) {
+                    gameBtn1.setImageResource(R.mipmap.ic_launcher_demoni);
 
-                break;
+                } else gameBtn1.setVisibility(View.INVISIBLE);
+
+
+                    break;
 
             case R.id.imageButton2:
-                gameBtn2.setVisibility(View.INVISIBLE);
-                break;
+                if (randomNr == 2) {
+                    gameBtn2.setImageResource(R.mipmap.ic_launcher_demoni);
+
+                } else gameBtn2.setVisibility(View.INVISIBLE);
+
+                    break;
 
             case R.id.imageButton3:
-                gameBtn3.setVisibility(View.INVISIBLE);
-                break;
+                if (randomNr == 3) {
+                    gameBtn3.setImageResource(R.mipmap.ic_launcher_demoni);
+
+                } else gameBtn3.setVisibility(View.INVISIBLE);
+                    break;
 
             case R.id.imageButton4:
                 gameBtn4.setVisibility(View.INVISIBLE);
-                break;
+                if (randomNr == 4) {
+                    gameBtn4.setImageResource(R.mipmap.ic_launcher_demoni);
+
+                } else gameBtn4.setVisibility(View.INVISIBLE);
+                    break;
 
             case R.id.fab:
                 finish();
@@ -95,7 +117,7 @@ public class PeliDemo extends AppCompatActivity {
 
 
     }
-    }
+}
 
 
 
