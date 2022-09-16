@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,6 +13,7 @@ import java.util.Random;
 
 
 public class PeliDemo extends AppCompatActivity {
+
 
     private ImageButton gameBtn1;
     private ImageButton gameBtn2;
@@ -77,6 +79,9 @@ public class PeliDemo extends AppCompatActivity {
             case R.id.imageButton1:
                 if (randomNr == 1) {
                     gameBtn1.setImageResource(R.mipmap.ic_launcher_demoni);
+                    gameBtn1.setBackgroundColor(Color.WHITE);
+                    System.out.println("Voitit pelin");
+
 
                 } else gameBtn1.setVisibility(View.INVISIBLE);
 
@@ -86,6 +91,8 @@ public class PeliDemo extends AppCompatActivity {
             case R.id.imageButton2:
                 if (randomNr == 2) {
                     gameBtn2.setImageResource(R.mipmap.ic_launcher_demoni);
+                    gameBtn2.setBackgroundColor(Color.WHITE);
+
 
                 } else gameBtn2.setVisibility(View.INVISIBLE);
 
@@ -94,6 +101,8 @@ public class PeliDemo extends AppCompatActivity {
             case R.id.imageButton3:
                 if (randomNr == 3) {
                     gameBtn3.setImageResource(R.mipmap.ic_launcher_demoni);
+                    gameBtn3.setBackgroundColor(Color.WHITE);
+
 
                 } else gameBtn3.setVisibility(View.INVISIBLE);
                     break;
@@ -102,6 +111,8 @@ public class PeliDemo extends AppCompatActivity {
                 gameBtn4.setVisibility(View.INVISIBLE);
                 if (randomNr == 4) {
                     gameBtn4.setImageResource(R.mipmap.ic_launcher_demoni);
+                    gameBtn4.setBackgroundColor(Color.WHITE);
+
 
                 } else gameBtn4.setVisibility(View.INVISIBLE);
                     break;
