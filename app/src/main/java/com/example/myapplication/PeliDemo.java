@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -19,7 +20,7 @@ import java.util.Random;
 
 public class PeliDemo extends AppCompatActivity {
 
-
+    private View bestScoreView;
     private ImageButton gameBtn1;
     private ImageButton gameBtn2;
     private ImageButton gameBtn3;
@@ -30,6 +31,7 @@ public class PeliDemo extends AppCompatActivity {
     SharedPreferences myPreferences;
     private static final String KEY_HS = "HighestScore";
     private int highestSuccessCount;
+    public static final String TAG ="MyAppMessage";
 
 
     @Override
@@ -41,6 +43,7 @@ public class PeliDemo extends AppCompatActivity {
         randomNr = rand.nextInt(3)+1;
         myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         highestSuccessCount = myPreferences.getInt(KEY_HS, 0);
+        bestScoreView = findViewById(R.id.textView2);
 
         ;
         gameBtn1 = findViewById(R.id.imageButton1);
@@ -87,6 +90,7 @@ public class PeliDemo extends AppCompatActivity {
         SharedPreferences.Editor myEditor = myPreferences.edit();
         myEditor.putInt(KEY_HS, 3);
         myEditor.commit();
+        Log.e(TAG, "Highest score: " +  highestSuccessCount);
 
 
     }
@@ -98,7 +102,9 @@ public class PeliDemo extends AppCompatActivity {
                     gameBtn1.startAnimation(animation);
                     gameBtn1.setImageResource(R.mipmap.ic_launcher_demoni);
                     gameBtn1.setBackgroundColor(Color.WHITE);
-                    System.out.println("Voitit pelin");
+                    gameBtn2.setVisibility(View.INVISIBLE);
+                    gameBtn3.setVisibility(View.INVISIBLE);
+                    gameBtn4.setVisibility(View.INVISIBLE);
 
 
                 } else gameBtn1.setVisibility(View.INVISIBLE);
@@ -111,6 +117,9 @@ public class PeliDemo extends AppCompatActivity {
                     gameBtn2.startAnimation(animation);
                     gameBtn2.setImageResource(R.mipmap.ic_launcher_demoni);
                     gameBtn2.setBackgroundColor(Color.WHITE);
+                    gameBtn1.setVisibility(View.INVISIBLE);
+                    gameBtn3.setVisibility(View.INVISIBLE);
+                    gameBtn4.setVisibility(View.INVISIBLE);
 
 
                 } else gameBtn2.setVisibility(View.INVISIBLE);
@@ -122,6 +131,9 @@ public class PeliDemo extends AppCompatActivity {
                     gameBtn3.startAnimation(animation);
                     gameBtn3.setImageResource(R.mipmap.ic_launcher_demoni);
                     gameBtn3.setBackgroundColor(Color.WHITE);
+                    gameBtn1.setVisibility(View.INVISIBLE);
+                    gameBtn2.setVisibility(View.INVISIBLE);
+                    gameBtn4.setVisibility(View.INVISIBLE);
 
 
                 } else gameBtn3.setVisibility(View.INVISIBLE);
@@ -133,6 +145,9 @@ public class PeliDemo extends AppCompatActivity {
                     gameBtn4.startAnimation(animation);
                     gameBtn4.setImageResource(R.mipmap.ic_launcher_demoni);
                     gameBtn4.setBackgroundColor(Color.WHITE);
+                    gameBtn1.setVisibility(View.INVISIBLE);
+                    gameBtn2.setVisibility(View.INVISIBLE);
+                    gameBtn3.setVisibility(View.INVISIBLE);
 
 
                 } else gameBtn4.setVisibility(View.INVISIBLE);
