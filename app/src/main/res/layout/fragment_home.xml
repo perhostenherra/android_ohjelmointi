@@ -36,7 +36,7 @@
         android:layout_width="205dp"
         android:layout_height="101dp"
         android:autoSizeTextType="uniform"
-        android:text="@string/hello_text" />
+        android:text="HELLO!" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -49,12 +49,12 @@
         android:id="@+id/hello_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/helloBtn_text" />
+        android:text="CLICK FOR HELLO!" />
 
     <Button
         android:id="@+id/peliDemoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aloita Peli" />
+        android:text="START THE GAME" />
 
 </LinearLayout>

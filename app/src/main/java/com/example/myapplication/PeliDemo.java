@@ -27,6 +27,7 @@ public class PeliDemo extends AppCompatActivity {
     private ImageButton gameBtn4;
     private FloatingActionButton fabBtn;
     private int randomNr;
+    private int bestScore;
     Animation animation;
     SharedPreferences myPreferences;
     private static final String KEY_HS = "HighestScore";
@@ -44,6 +45,7 @@ public class PeliDemo extends AppCompatActivity {
         myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         highestSuccessCount = myPreferences.getInt(KEY_HS, 0);
         bestScoreView = findViewById(R.id.textView2);
+
 
         ;
         gameBtn1 = findViewById(R.id.imageButton1);
@@ -87,10 +89,7 @@ public class PeliDemo extends AppCompatActivity {
 
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.roundanimation);
         ImageView image = (ImageView) findViewById(R.id.imageButton1);
-        SharedPreferences.Editor myEditor = myPreferences.edit();
-        myEditor.putInt(KEY_HS, 3);
-        myEditor.commit();
-        Log.e(TAG, "Highest score: " +  highestSuccessCount);
+
 
 
     }
@@ -99,12 +98,14 @@ public class PeliDemo extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.imageButton1:
                 if (randomNr == 1) {
+                    bestScore = bestScore+1;
                     gameBtn1.startAnimation(animation);
                     gameBtn1.setImageResource(R.mipmap.ic_launcher_demoni);
                     gameBtn1.setBackgroundColor(Color.WHITE);
                     gameBtn2.setVisibility(View.INVISIBLE);
                     gameBtn3.setVisibility(View.INVISIBLE);
                     gameBtn4.setVisibility(View.INVISIBLE);
+                    myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 
                 } else gameBtn1.setVisibility(View.INVISIBLE);
@@ -114,12 +115,14 @@ public class PeliDemo extends AppCompatActivity {
 
             case R.id.imageButton2:
                 if (randomNr == 2) {
+                    bestScore = bestScore+1;
                     gameBtn2.startAnimation(animation);
                     gameBtn2.setImageResource(R.mipmap.ic_launcher_demoni);
                     gameBtn2.setBackgroundColor(Color.WHITE);
                     gameBtn1.setVisibility(View.INVISIBLE);
                     gameBtn3.setVisibility(View.INVISIBLE);
                     gameBtn4.setVisibility(View.INVISIBLE);
+                    myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 
                 } else gameBtn2.setVisibility(View.INVISIBLE);
@@ -128,12 +131,14 @@ public class PeliDemo extends AppCompatActivity {
 
             case R.id.imageButton3:
                 if (randomNr == 3) {
+                    bestScore = bestScore+1;
                     gameBtn3.startAnimation(animation);
                     gameBtn3.setImageResource(R.mipmap.ic_launcher_demoni);
                     gameBtn3.setBackgroundColor(Color.WHITE);
                     gameBtn1.setVisibility(View.INVISIBLE);
                     gameBtn2.setVisibility(View.INVISIBLE);
                     gameBtn4.setVisibility(View.INVISIBLE);
+                    myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 
                 } else gameBtn3.setVisibility(View.INVISIBLE);
@@ -142,12 +147,15 @@ public class PeliDemo extends AppCompatActivity {
             case R.id.imageButton4:
                 gameBtn4.setVisibility(View.INVISIBLE);
                 if (randomNr == 4) {
+                    bestScore = bestScore+1;
                     gameBtn4.startAnimation(animation);
                     gameBtn4.setImageResource(R.mipmap.ic_launcher_demoni);
                     gameBtn4.setBackgroundColor(Color.WHITE);
                     gameBtn1.setVisibility(View.INVISIBLE);
                     gameBtn2.setVisibility(View.INVISIBLE);
                     gameBtn3.setVisibility(View.INVISIBLE);
+                    myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
 
 
                 } else gameBtn4.setVisibility(View.INVISIBLE);
@@ -156,6 +164,7 @@ public class PeliDemo extends AppCompatActivity {
             case R.id.fab:
                 finish();
                 startActivity(getIntent());
+                Log.e(TAG, "Highest score: " + highestSuccessCount);
                 break;
 
             default:

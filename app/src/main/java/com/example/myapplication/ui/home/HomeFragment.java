@@ -35,6 +35,7 @@ public class HomeFragment extends Fragment {
         welcomeTextView = root.findViewById(R.id.textView);
         peliDemoButton = root.findViewById(R.id.peliDemoButton);
         Log.e(TAG, "activating play view");
+        welcomeTextView.setVisibility(View.INVISIBLE);
 
         peliDemoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,11 +73,11 @@ public class HomeFragment extends Fragment {
                 break;
 
             case R.id.hello_button:
-                if (welcomeTextView.getVisibility() == View.VISIBLE)
-                    welcomeTextView.setVisibility(View.INVISIBLE);
-
-                else if (welcomeTextView.getVisibility() == View.INVISIBLE)
+                if (welcomeTextView.getVisibility() == View.INVISIBLE)
                     welcomeTextView.setVisibility(View.VISIBLE);
+
+                else if (welcomeTextView.getVisibility() == View.VISIBLE)
+                    welcomeTextView.setVisibility(View.INVISIBLE);
 
                 break;
 
