@@ -27,8 +27,6 @@ public class PeliDemo extends AppCompatActivity {
     Animation animation;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
