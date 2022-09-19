@@ -3,7 +3,10 @@ package com.example.myapplication;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +24,8 @@ public class PeliDemo extends AppCompatActivity {
     private ImageButton gameBtn4;
     private FloatingActionButton fabBtn;
     private int randomNr;
+    Animation animation;
+
 
 
 
@@ -71,13 +76,15 @@ public class PeliDemo extends AppCompatActivity {
             }
         });
 
-
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.roundanimation);
+        ImageView image = (ImageView) findViewById(R.id.imageButton1);
     }
 
     public void handleClickEvents(View view) {
         switch (view.getId()) {
             case R.id.imageButton1:
                 if (randomNr == 1) {
+                    gameBtn1.startAnimation(animation);
                     gameBtn1.setImageResource(R.mipmap.ic_launcher_demoni);
                     gameBtn1.setBackgroundColor(Color.WHITE);
                     System.out.println("Voitit pelin");
@@ -86,10 +93,12 @@ public class PeliDemo extends AppCompatActivity {
                 } else gameBtn1.setVisibility(View.INVISIBLE);
 
 
+
                     break;
 
             case R.id.imageButton2:
                 if (randomNr == 2) {
+                    gameBtn2.startAnimation(animation);
                     gameBtn2.setImageResource(R.mipmap.ic_launcher_demoni);
                     gameBtn2.setBackgroundColor(Color.WHITE);
 
@@ -100,6 +109,7 @@ public class PeliDemo extends AppCompatActivity {
 
             case R.id.imageButton3:
                 if (randomNr == 3) {
+                    gameBtn3.startAnimation(animation);
                     gameBtn3.setImageResource(R.mipmap.ic_launcher_demoni);
                     gameBtn3.setBackgroundColor(Color.WHITE);
 
@@ -110,6 +120,7 @@ public class PeliDemo extends AppCompatActivity {
             case R.id.imageButton4:
                 gameBtn4.setVisibility(View.INVISIBLE);
                 if (randomNr == 4) {
+                    gameBtn4.startAnimation(animation);
                     gameBtn4.setImageResource(R.mipmap.ic_launcher_demoni);
                     gameBtn4.setBackgroundColor(Color.WHITE);
 
