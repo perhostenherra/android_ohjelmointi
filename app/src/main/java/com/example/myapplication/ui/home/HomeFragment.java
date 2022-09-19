@@ -68,6 +68,7 @@ public class HomeFragment extends Fragment {
                 Intent i = new Intent(getActivity(), PeliDemo.class);
                 startActivity(i);
 
+
                 break;
 
             case R.id.hello_button:

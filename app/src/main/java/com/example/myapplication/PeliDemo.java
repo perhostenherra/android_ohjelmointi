@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -25,6 +27,9 @@ public class PeliDemo extends AppCompatActivity {
     private FloatingActionButton fabBtn;
     private int randomNr;
     Animation animation;
+    SharedPreferences myPreferences;
+    private static final String KEY_HS = "HighestScore";
+    private int highestSuccessCount;
 
 
     @Override
@@ -34,6 +39,9 @@ public class PeliDemo extends AppCompatActivity {
 
         Random rand = new Random();
         randomNr = rand.nextInt(3)+1;
+        myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        highestSuccessCount = myPreferences.getInt(KEY_HS, 0);
+
         ;
         gameBtn1 = findViewById(R.id.imageButton1);
         gameBtn1.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +84,11 @@ public class PeliDemo extends AppCompatActivity {
 
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.roundanimation);
         ImageView image = (ImageView) findViewById(R.id.imageButton1);
+        SharedPreferences.Editor myEditor = myPreferences.edit();
+        myEditor.putInt(KEY_HS, 3);
+        myEditor.commit();
+
+
     }
 
     public void handleClickEvents(View view) {
@@ -89,7 +102,6 @@ public class PeliDemo extends AppCompatActivity {
 
 
                 } else gameBtn1.setVisibility(View.INVISIBLE);
-
 
 
                     break;
@@ -134,6 +146,7 @@ public class PeliDemo extends AppCompatActivity {
             default:
 
         }
+
 
 
     }
