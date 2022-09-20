@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,7 +21,7 @@ import java.util.Random;
 
 public class PeliDemo extends AppCompatActivity {
 
-    private View bestScoreView;
+    private TextView bestScoreView;
     private ImageButton gameBtn1;
     private ImageButton gameBtn2;
     private ImageButton gameBtn3;
@@ -31,7 +32,6 @@ public class PeliDemo extends AppCompatActivity {
     Animation animation;
     SharedPreferences myPreferences;
     private static final String KEY_HS = "HighestScore";
-    private int highestSuccessCount;
     public static final String TAG ="MyAppMessage";
 
 
@@ -43,8 +43,9 @@ public class PeliDemo extends AppCompatActivity {
         Random rand = new Random();
         randomNr = rand.nextInt(3)+1;
         myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        highestSuccessCount = myPreferences.getInt(KEY_HS, 0);
-        bestScoreView = findViewById(R.id.textView2);
+        bestScore = myPreferences.getInt(KEY_HS, 0);
+
+        bestScoreView = findViewById(R.id.highScoreView);
 
 
         ;
@@ -91,7 +92,7 @@ public class PeliDemo extends AppCompatActivity {
         ImageView image = (ImageView) findViewById(R.id.imageButton1);
 
 
-
+        bestScoreView.setText("DEMONEJA LÖYTYNYT " +String.valueOf(bestScore)+" KPL");
     }
 
     public void handleClickEvents(View view) {
@@ -105,7 +106,10 @@ public class PeliDemo extends AppCompatActivity {
                     gameBtn2.setVisibility(View.INVISIBLE);
                     gameBtn3.setVisibility(View.INVISIBLE);
                     gameBtn4.setVisibility(View.INVISIBLE);
-                    myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                    SharedPreferences.Editor myEditor = myPreferences.edit();
+                    myEditor.putInt(KEY_HS, bestScore);
+                    myEditor.commit();
+
 
 
                 } else gameBtn1.setVisibility(View.INVISIBLE);
@@ -122,7 +126,10 @@ public class PeliDemo extends AppCompatActivity {
                     gameBtn1.setVisibility(View.INVISIBLE);
                     gameBtn3.setVisibility(View.INVISIBLE);
                     gameBtn4.setVisibility(View.INVISIBLE);
-                    myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                    SharedPreferences.Editor myEditor = myPreferences.edit();
+                    myEditor.putInt(KEY_HS, bestScore);
+                    myEditor.commit();
+
 
 
                 } else gameBtn2.setVisibility(View.INVISIBLE);
@@ -138,7 +145,10 @@ public class PeliDemo extends AppCompatActivity {
                     gameBtn1.setVisibility(View.INVISIBLE);
                     gameBtn2.setVisibility(View.INVISIBLE);
                     gameBtn4.setVisibility(View.INVISIBLE);
-                    myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                    SharedPreferences.Editor myEditor = myPreferences.edit();
+                    myEditor.putInt(KEY_HS, bestScore);
+                    myEditor.commit();
+
 
 
                 } else gameBtn3.setVisibility(View.INVISIBLE);
@@ -154,7 +164,10 @@ public class PeliDemo extends AppCompatActivity {
                     gameBtn1.setVisibility(View.INVISIBLE);
                     gameBtn2.setVisibility(View.INVISIBLE);
                     gameBtn3.setVisibility(View.INVISIBLE);
-                    myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                    SharedPreferences.Editor myEditor = myPreferences.edit();
+                    myEditor.putInt(KEY_HS, bestScore);
+                    myEditor.commit();
+
 
 
 
@@ -164,7 +177,7 @@ public class PeliDemo extends AppCompatActivity {
             case R.id.fab:
                 finish();
                 startActivity(getIntent());
-                Log.e(TAG, "Highest score: " + highestSuccessCount);
+                Log.e(TAG, "Highest score: " + bestScore);
                 break;
 
             default:
