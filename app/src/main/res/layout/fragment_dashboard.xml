@@ -20,7 +20,7 @@
         android:textSize="10dp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField2"
+        android:id="@+id/latitude"
         layout_height="match-parent"
         layout_width="match-parent"
         android:layout_width="match_parent"
@@ -29,13 +29,14 @@
         android:paddingBottom="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInput1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField"
+        android:id="@+id/longitude"
         layout_height="match-parent"
         layout_width="match-parent"
         android:layout_width="match_parent"
@@ -45,6 +46,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInput2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -53,7 +55,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField3"
+        android:id="@+id/address"
         layout_height="match-parent"
         layout_width="match-parent"
         android:layout_width="match_parent"
@@ -62,6 +64,7 @@
         android:paddingBottom="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInput3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

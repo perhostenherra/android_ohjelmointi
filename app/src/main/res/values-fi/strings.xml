@@ -15,4 +15,7 @@
     <string name="title_activity_main2">Pääaktiviteetti 2</string>
     <string name="title_dashboard">Ohjauspaneeli</string>
     <string name="title_notifications">Ilmoitukset</string>
+    <string name="address">Osoite</string>
+    <string name="latitude">Leveysaste</string>
+    <string name="longitude">Pituusaste</string>
 </resources>
