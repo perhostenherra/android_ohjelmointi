@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -22,8 +21,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentDashboardBinding;
+import com.google.android.material.textfield.TextInputEditText;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,18 +31,17 @@ public class DashboardFragment extends Fragment implements LocationListener {
 
     Geocoder geocoder;
     List<Address> addresses;
-    String address = addresses.get(0).getAddressLine(0);
-    String city = addresses.get(0).getLocality();
-    String country = addresses.get(0).getCountryName();
-    String postalCode = addresses.get(0).getPostalCode();
+    String address;
+    String city;
+    String country;
+    String postalCode;
     LocationManager locationManager;
     String currentLocation;
-    Location location;
-    Location LastLocation;
+    Location lastLocation;
     public static final String TAG = "MyAppMessage";
-    TextView latField;
-    TextView longField;
-    TextView addField;
+    TextInputEditText latField;
+    TextInputEditText longField;
+    TextInputEditText addField;
 
 
     private FragmentDashboardBinding binding;
@@ -55,19 +53,12 @@ public class DashboardFragment extends Fragment implements LocationListener {
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        Locale finnish = new Locale("fi", "FI");
-        geocoder = new Geocoder(getContext(), finnish);
-        double latitude = 0;
-        double longitude = 0;
-        try {
-            addresses = geocoder.getFromLocation(latitude, longitude, 1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        latField = root.findViewById(R.id.latitude);
-        longField = root.findViewById(R.id.longitude);
-        addField = root.findViewById(R.id.address);
+        latField = root.findViewById(R.id.textInput1);
+        longField = root.findViewById(R.id.textInput2);
+        addField = root.findViewById(R.id.textInput3);
+
 
         //final TextView textView = binding.textDashboard;
         //dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
@@ -90,17 +81,21 @@ public class DashboardFragment extends Fragment implements LocationListener {
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20000, 0, this);
+        lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        latField.setText(Double.toString(lastLocation.getLatitude()));
+        longField.setText(Double.toString(lastLocation.getLongitude()));
+
 
         try {
             Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(
-                    location.getLatitude(),
-                    location.getLongitude(), 1);
+                    lastLocation.getLatitude(),
+                    lastLocation.getLongitude(), 1);
             Address address = addresses.get(0);
             currentLocation = address.getAddressLine(0);
         } catch (Exception e) {
             Log.e(TAG, "Jotain meni pieleen");
-        }
+        } addField.setText(currentLocation);
     }
 
 
@@ -129,7 +124,7 @@ public class DashboardFragment extends Fragment implements LocationListener {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
     }
 
     @Override
