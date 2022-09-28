@@ -67,7 +67,6 @@ public class DashboardFragment extends Fragment implements LocationListener {
             @Override
             public void onClick(View view) {
                 showMap();
-
             }
         });
 
