@@ -2,17 +2,20 @@ package com.example.myapplication.ui.dashboard;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -42,6 +45,7 @@ public class DashboardFragment extends Fragment implements LocationListener {
     TextInputEditText latField;
     TextInputEditText longField;
     TextInputEditText addField;
+    Button mapButton;
 
 
     private FragmentDashboardBinding binding;
@@ -58,6 +62,15 @@ public class DashboardFragment extends Fragment implements LocationListener {
         latField = root.findViewById(R.id.textInput1);
         longField = root.findViewById(R.id.textInput2);
         addField = root.findViewById(R.id.textInput3);
+        mapButton = root.findViewById(R.id.mapbutton);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMap();
+
+            }
+        });
+
 
 
         //final TextView textView = binding.textDashboard;
@@ -67,6 +80,21 @@ public class DashboardFragment extends Fragment implements LocationListener {
 
     }
 
+    private void showMap(){
+        Uri gmmIntentUri = Uri.parse("geo:"+lastLocation.getLatitude()+","+lastLocation.getLongitude());
+
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+
+        mapIntent.setPackage("com.google.android.apps.maps");
+
+                /*if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+
+                 */ startActivity(mapIntent);
+
+
+    }
     @Override
     public void onStart() {
         super.onStart();
@@ -80,7 +108,7 @@ public class DashboardFragment extends Fragment implements LocationListener {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20000, 0, this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0, this);
         lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         latField.setText(Double.toString(lastLocation.getLatitude()));
         longField.setText(Double.toString(lastLocation.getLongitude()));
@@ -128,10 +156,26 @@ public class DashboardFragment extends Fragment implements LocationListener {
     }
 
     @Override
-    public void onLocationChanged(@NonNull Location location) {
-    //makeUseOfNewLocation(location);
-    } public void onStatusChanged(String provider, int status, Bundle extras) {}
-    public void onProviderEnabled(String provider){}
-    public void onProviderDisabled(String provider) {}
+    public void onLocationChanged(Location location) {
 
-}; //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0, locationListener);
+        latField.setText(Double.toString(location.getLatitude()));
+        longField.setText(Double.toString(location.getLongitude()));
+
+        try {
+            Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(
+                    location.getLatitude(),
+                    location.getLongitude(), 1);
+            Address address = addresses.get(0);
+            String currentLocation = address.getAddressLine(0);
+            addField.setText(currentLocation);
+
+        } catch (Exception e) {
+            Log.e(TAG, "Jotain meni pieleen");
+        }
+
+    }
+
+
+
+}
