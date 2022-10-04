@@ -15,10 +15,10 @@
         android:id="@+id/textClock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:format24Hour="MMM dd, yyyy k:mm"
         android:format12Hour="@null"
-        android:textSize="20dp"
-        android:gravity="center"/>
+        android:format24Hour="MMM dd, yyyy k:mm"
+        android:gravity="center"
+        android:textSize="20dp" />
 
     <NumberPicker
         android:id="@+id/numberPicker"
@@ -32,7 +32,7 @@
         android:layout_height="50dp"
         android:autoSizeTextType="uniform"
         android:gravity="center"
-        android:text="Location data"
+        android:text=""
         android:textSize="10dp" />
 
     <TextView
@@ -42,9 +42,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="50dp"
         android:textAlignment="center"
         android:textColor="@color/DarkRed"
-        android:textSize="50dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

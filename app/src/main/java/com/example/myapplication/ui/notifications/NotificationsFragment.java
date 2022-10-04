@@ -108,7 +108,8 @@ public class NotificationsFragment extends Fragment {
 
 
                             public void onFinish() {
-                                mTextField.setText("done!");
+                                //Pysäytetään ajastin, jonkinlainen reset?
+                                mTextField.setText("Done!");
                                 alarm.play();
                                 binding.textNotifications.startAnimation(animation);
 
@@ -119,7 +120,8 @@ public class NotificationsFragment extends Fragment {
 
 
                     } else if (checkedId == R.id.buttonPause) {
-                        //button_pause=RESUME, niin
+                        //button_pause=RESUME, niin klikkaus käynnistää ajastimen uudelleen
+                        //button_pause=PAUSE, niin klikkaus pysäyttää ajastimen
                         if (timeIsRunning) {
                             button_start.setEnabled(false);
                             button_pause.setText("RESUME");
