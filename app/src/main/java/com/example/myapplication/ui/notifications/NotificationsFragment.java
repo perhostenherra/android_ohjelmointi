@@ -1,10 +1,15 @@
 package com.example.myapplication.ui.notifications;
 
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -18,6 +23,8 @@ import com.example.myapplication.databinding.FragmentNotificationsBinding;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
 public class NotificationsFragment extends Fragment {
+
+    private FragmentNotificationsBinding binding;
     Button button_start;
     Button button_pause;
     Button button_stop;
@@ -25,9 +32,15 @@ public class NotificationsFragment extends Fragment {
     NumberPicker numPicker;
     TextView mTextField;
     CountDownTimer cdt;
+    TextView textView;
+    long timeLeft;
+    boolean timeIsRunning;
+    Uri ringtoneUri;
+    Ringtone alarm;
+    Animation animation;
+    public static final String TAG = "My TAG";
 
 
-    private FragmentNotificationsBinding binding;
 
     public NotificationsFragment() {
     }
@@ -38,10 +51,13 @@ public class NotificationsFragment extends Fragment {
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
 
 
-
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        mTextField = root.findViewById(R.id.textTime);
+        ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        alarm = RingtoneManager.getRingtone(getContext(), ringtoneUri);
+        animation = AnimationUtils.loadAnimation(getContext(), R.anim.roundanimation);
+        //textView = root.findViewById(R.id.text_notifications);
+        mTextField = root.findViewById(R.id.text_notifications);
         button_start = root.findViewById(R.id.buttonStart);
         button_pause = root.findViewById(R.id.buttonPause);
         button_stop = root.findViewById(R.id.buttonStop);
@@ -50,6 +66,8 @@ public class NotificationsFragment extends Fragment {
         for(int i = 0; i<myValues.length;i++){
             myValues[i]= String.valueOf(i);
         }
+        button_pause.setEnabled(false);
+        button_stop.setEnabled(false);
         numPicker.setDisplayedValues(myValues);
         numPicker.setMinValue(0);
         numPicker.setMaxValue(60);
@@ -62,39 +80,69 @@ public class NotificationsFragment extends Fragment {
         materialButtonToggleGroup = root.findViewById(R.id.toggleButton);
         materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.
                 OnButtonCheckedListener() {
+
+
             @Override
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId,
                                         boolean isChecked) {
+
+
                 if (isChecked) {
                     if (checkedId == R.id.buttonStart) {
                         // start timing here
-                        cdt=new CountDownTimer(numPicker.getValue()*1000, 1000) {
+                        // Alussa pystyy painamaan vain START-painiketta
+                        button_pause.setEnabled(true);
+                        button_stop.setEnabled(true);
+                        timeIsRunning =true;
+                        cdt = new CountDownTimer(numPicker.getValue() * 1000, 1000) {
 
                             public void onTick(long millisUntilFinished) {
 
-
-                                mTextField.setText(String.valueOf(millisUntilFinished / 1000) +" s");
+                                mTextField.setText(String.valueOf(millisUntilFinished / 1000) + " s");
                                 //mTextField.setText(cdt.start());
+                                timeLeft = millisUntilFinished;
+                                long min = (millisUntilFinished/(1000*60));
+                                long sec = ((millisUntilFinished/1000)-min*60);
+
                             }
+
 
                             public void onFinish() {
                                 mTextField.setText("done!");
+                                alarm.play();
+                                binding.textNotifications.startAnimation(animation);
+
                             }
-                        }.start();
+
+                        }       .start();
+                        button_start.setEnabled(false);
+
 
                     } else if (checkedId == R.id.buttonPause) {
+                        //button_pause=RESUME, niin
+                        if (timeIsRunning) {
+                            button_start.setEnabled(false);
+                            button_pause.setText("RESUME");
+                            cdt.cancel();
+                        } else {
+                            cdt.start();
+                            button_pause.setText("PAUSE");
 
-                            // pause timing here
-
-                        };
+                        }
 
 
+                    };
 
-                    } else if (checkedId == R.id.buttonStop) {
 
-                        //stop timing here
-                    }
-                }
+
+                } else if (checkedId == R.id.buttonStop) {
+                    button_pause.setEnabled(false);
+                    cdt.cancel();
+                    cdt.onFinish();
+                    alarm.stop();
+
+                };
+            }
 
         });
 
