@@ -5,6 +5,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,6 @@ public class NotificationsFragment extends Fragment {
     public static final String TAG = "My TAG";
 
 
-
     public NotificationsFragment() {
     }
 
@@ -63,15 +63,17 @@ public class NotificationsFragment extends Fragment {
         button_stop = root.findViewById(R.id.buttonStop);
         final NumberPicker numPicker = root.findViewById(R.id.numberPicker);
         String[] myValues = new String[61];
-        for(int i = 0; i<myValues.length;i++){
-            myValues[i]= String.valueOf(i);
+        for (int i = 0; i < myValues.length; i++) {
+            myValues[i] = String.valueOf(i);
         }
-        button_pause.setEnabled(false);
-        button_stop.setEnabled(false);
+        //button_pause.setEnabled(false);
+        //button_stop.setEnabled(false);
         numPicker.setDisplayedValues(myValues);
         numPicker.setMinValue(0);
         numPicker.setMaxValue(60);
         numPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+
+
             @Override
             public void onValueChange(NumberPicker numberPicker, int i, int i1) {
                 // Code here executes on main thread after user selects value
@@ -86,68 +88,73 @@ public class NotificationsFragment extends Fragment {
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId,
                                         boolean isChecked) {
 
-
                 if (isChecked) {
                     if (checkedId == R.id.buttonStart) {
-                        // start timing here
+                        Log.e(TAG, String.valueOf(+timeLeft));
                         // Alussa pystyy painamaan vain START-painiketta
-                        button_pause.setEnabled(true);
-                        button_stop.setEnabled(true);
-                        timeIsRunning =true;
-                        cdt = new CountDownTimer(numPicker.getValue() * 1000, 1000) {
+                        //button_pause.setEnabled(true);
+                        //button_stop.setEnabled(true);
+                        long startTime;
+                        if (timeLeft > 0) {
+                            startTime = timeLeft;
+                        } else {
+                            startTime = numPicker.getValue() * 1000;
+                        }
+
+                        cdt = new CountDownTimer(startTime, 1000) {
+
 
                             public void onTick(long millisUntilFinished) {
 
                                 mTextField.setText(String.valueOf(millisUntilFinished / 1000) + " s");
                                 //mTextField.setText(cdt.start());
                                 timeLeft = millisUntilFinished;
-                                long min = (millisUntilFinished/(1000*60));
-                                long sec = ((millisUntilFinished/1000)-min*60);
+                                //long min = (millisUntilFinished/(1000*60));
+                                //long sec = ((millisUntilFinished/1000)-min*60);
 
                             }
 
 
                             public void onFinish() {
                                 //Pysäytetään ajastin, jonkinlainen reset?
+                                timeLeft=0;
                                 mTextField.setText("Done!");
                                 alarm.play();
                                 binding.textNotifications.startAnimation(animation);
 
+
                             }
 
-                        }       .start();
-                        button_start.setEnabled(false);
+
+                        };
+                        cdt.start();
+
+
+                        //button_start.setEnabled(false);
 
 
                     } else if (checkedId == R.id.buttonPause) {
-                        //button_pause=RESUME, niin klikkaus käynnistää ajastimen uudelleen
-                        //button_pause=PAUSE, niin klikkaus pysäyttää ajastimen
-                        if (timeIsRunning) {
-                            button_start.setEnabled(false);
-                            button_pause.setText("RESUME");
-                            cdt.cancel();
-                        } else {
-                            cdt.start();
-                            button_pause.setText("PAUSE");
-
-                        }
+                        Log.e(TAG, String.valueOf(+timeLeft));
+                        cdt.cancel();
 
 
-                    };
+                    } else if (checkedId == R.id.buttonStop) {
+
+                        //button_pause.setEnabled(false);
+                        cdt.cancel();
+                        cdt.onFinish();
+                        alarm.stop();
+                        binding.textNotifications.clearAnimation();
 
 
+                    }
 
-                } else if (checkedId == R.id.buttonStop) {
-                    button_pause.setEnabled(false);
-                    cdt.cancel();
-                    cdt.onFinish();
-                    alarm.stop();
-
-                };
+                }
             }
 
-        });
 
+
+        });
 
 
         //final TextView textView = binding.textNotifications;
