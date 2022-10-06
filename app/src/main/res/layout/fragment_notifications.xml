@@ -11,16 +11,15 @@
     tools:context=".ui.notifications.NotificationsFragment">
 
 
-
     <TextClock
         android:id="@+id/textClock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="440dp"
+        android:layout_height="50dp"
+        android:background="@color/Purple"
         android:format12Hour="@null"
-        android:paddingBottom="20dp"
         android:format24Hour="MMM dd, yyyy k:mm"
         android:gravity="center"
-        android:textColor="@color/Black"
+        android:textColor="@color/White"
         android:textSize="30dp" />
 
 
@@ -33,15 +32,15 @@
 
     <TextView
         android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="50dp"
         android:textAlignment="center"
-        android:textColor="@color/DarkRed"
-        android:textSize="30dp"
+        android:textColor="@color/Purple"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

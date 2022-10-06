@@ -18,7 +18,7 @@
         android:autoSizeTextType="uniform"
         android:gravity="center"
         android:fontFamily="@font/concrete"
-        android:textColor="@color/Black"
+        android:textColor="@color/Purple"
         android:text="Location data"
         android:textSize="20dp" />
 

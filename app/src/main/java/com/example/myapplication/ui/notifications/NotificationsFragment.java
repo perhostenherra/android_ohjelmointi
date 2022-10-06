@@ -66,8 +66,8 @@ public class NotificationsFragment extends Fragment {
         for (int i = 0; i < myValues.length; i++) {
             myValues[i] = String.valueOf(i);
         }
-        //button_pause.setEnabled(false);
-        //button_stop.setEnabled(false);
+        button_pause.setEnabled(false);
+        button_stop.setEnabled(false);
         numPicker.setDisplayedValues(myValues);
         numPicker.setMinValue(0);
         numPicker.setMaxValue(60);
@@ -92,11 +92,12 @@ public class NotificationsFragment extends Fragment {
                     if (checkedId == R.id.buttonStart) {
                         Log.e(TAG, String.valueOf(+timeLeft));
                         // Alussa pystyy painamaan vain START-painiketta
-                        //button_pause.setEnabled(true);
-                        //button_stop.setEnabled(true);
+                        button_pause.setEnabled(true);
+                        button_stop.setEnabled(true);
                         long startTime;
                         if (timeLeft > 0) {
                             startTime = timeLeft;
+                            button_start.setText("START");
                         } else {
                             startTime = numPicker.getValue() * 1000;
                         }
@@ -134,8 +135,10 @@ public class NotificationsFragment extends Fragment {
 
 
                     } else if (checkedId == R.id.buttonPause) {
-                        Log.e(TAG, String.valueOf(+timeLeft));
+                        //Log.e(TAG, String.valueOf(+timeLeft));
                         cdt.cancel();
+                        button_start.setText("RESUME");
+
 
 
                     } else if (checkedId == R.id.buttonStop) {
@@ -145,6 +148,7 @@ public class NotificationsFragment extends Fragment {
                         cdt.onFinish();
                         alarm.stop();
                         binding.textNotifications.clearAnimation();
+                        button_start.setText("START");
 
 
                     }
