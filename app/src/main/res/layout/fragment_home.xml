@@ -36,7 +36,11 @@
         android:layout_width="205dp"
         android:layout_height="101dp"
         android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:fontFamily="@font/concrete"
+        android:textColor="@color/Purple"
         android:text="HELLO!" />
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -44,17 +48,27 @@
         android:layout_height="316dp"
         app:srcCompat="@drawable/pika" />
 
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        app:backgroundTint="@android:color/holo_purple"
+        android:text="Search" />
+
 
     <Button
         android:id="@+id/hello_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:backgroundTint="@android:color/holo_purple"
         android:text="CLICK FOR HELLO!" />
 
     <Button
         android:id="@+id/peliDemoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:backgroundTint="@android:color/holo_purple"
         android:text="START THE GAME" />
 
 </LinearLayout>

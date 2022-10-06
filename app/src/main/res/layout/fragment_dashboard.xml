@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@color/WhiteSmoke"
     tools:context=".MainActivity"
     android:paddingTop="200dp">
 
@@ -16,8 +17,10 @@
         android:layout_height="50dp"
         android:autoSizeTextType="uniform"
         android:gravity="center"
+        android:fontFamily="@font/concrete"
+        android:textColor="@color/Black"
         android:text="Location data"
-        android:textSize="10dp" />
+        android:textSize="20dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/latitude"
@@ -25,6 +28,7 @@
         layout_width="match-parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/Black"
         android:hint="@string/latitude"
         android:paddingBottom="20dp">
 
@@ -41,6 +45,7 @@
         layout_width="match-parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/Black"
         android:hint="@string/longitude"
         android:paddingBottom="20dp">
 
@@ -60,6 +65,7 @@
         layout_width="match-parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/Black"
         android:hint="@string/address"
         android:paddingBottom="20dp">
 
@@ -75,5 +81,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SHOW ON MAP"
-        app:backgroundTint="@android:color/holo_red_dark"/>
+        app:backgroundTint="@android:color/holo_purple"/>
 </LinearLayout>
