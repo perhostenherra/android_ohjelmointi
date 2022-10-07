@@ -76,10 +76,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autoSizeTextType="uniform"
-            android:fontFamily="@font/concrete"
             android:textColor="@color/White"
             android:text="Highest score: "
-            android:textSize="30dp" />
+            android:textSize="25dp" />
     </TableRow>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -88,6 +87,7 @@
         android:layout_height="80dp"
         android:layout_margin="20dp"
         android:gravity="right"
+        android:foreground="@drawable/ic_baseline_refresh_24_white"
         app:backgroundTint="@android:color/holo_purple" />
 
 </LinearLayout>
