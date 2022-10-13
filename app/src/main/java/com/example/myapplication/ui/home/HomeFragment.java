@@ -41,7 +41,6 @@ public class HomeFragment extends Fragment {
         peliDemoButton = root.findViewById(R.id.peliDemoButton);
         searchButton = root.findViewById(R.id.searchButton);
         searchText=root.findViewById(R.id.searchText);
-        searchTerm = String.valueOf(searchText.getText());
         Log.e(TAG, "activating play view");
         welcomeTextView.setVisibility(View.INVISIBLE);
 
@@ -88,8 +87,10 @@ public class HomeFragment extends Fragment {
                 break;
 
             case R.id.searchButton:
+                searchTerm = String.valueOf(searchText.getText());
                 Intent i2 = new Intent(getActivity(), RajapintaHaku.class);
                 i2.putExtra("searchTerm",searchTerm);
+                Log.e(TAG,"searchTerm:"+searchTerm);
                 startActivity(i2);
 
                 break;
