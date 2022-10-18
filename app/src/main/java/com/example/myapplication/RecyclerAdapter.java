@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,15 +14,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
+        TextView itemPosition;
         TextView textViewName;
-        TextView textViewVersion;
-        ImageView imageViewIcon;
+        TextView textViewBusinessId;
+        TextView textViewRegistrationDate;
+        TextView textViewCompanyForm;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             this.textViewName = (TextView) itemView.findViewById(R.id.textViewName);
+            this.itemPosition = (TextView) itemView.findViewById(R.id.item_position);
             //this.textViewVersion = (TextView) itemView.findViewById(R.id.textViewVersion);
-            this.imageViewIcon = (ImageView) itemView.findViewById(R.id.imageView);
+            //this.imageViewIcon = (ImageView) itemView.findViewById(R.id.imageView);
         }
     }
 
@@ -47,16 +49,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
 
         TextView textViewName = holder.textViewName;
-        TextView textViewVersion = holder.textViewVersion;
-        ImageView imageView = holder.imageViewIcon;
+        TextView textViewBusinessId = holder.textViewBusinessId;
+        TextView textViewRegistrationDate= holder.textViewRegistrationDate;
+        TextView textViewCompanyForm = holder.textViewCompanyForm;
 
         textViewName.setText(dataSet.get(listPosition).getName());
-        //textViewVersion.setText(dataSet.get(listPosition).getVersion());
-        //imageView.setImageResource(dataSet.get(listPosition).getImage());
+        textViewBusinessId.setText(dataSet.get(listPosition).getBusinessId());
+        textViewRegistrationDate.setText(dataSet.get(listPosition).getRegistrationDate());
+        textViewCompanyForm.setText(dataSet.get(listPosition).getCompanyForm());
+
     }
 
     @Override
     public int getItemCount() {
         return dataSet.size();
     }
+
+
+
 }

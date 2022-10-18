@@ -13,11 +13,14 @@
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:autoSizeTextType="uniform"
         android:gravity="center"
-        android:text="HÖHÖÖÖÖ"
+        android:fontFamily="@font/concrete"
+        android:textColor="@color/WhiteSmoke"
+        android:background="@color/Purple"
+        android:text="Companies:"
         android:textSize="10dp" />
 
     <TextView
@@ -28,9 +31,11 @@
         android:gravity="center"
         android:textSize="20dp" />
 
-    <!--ProgressBar
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/-->
+    <ProgressBar
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/Purple"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
         android:layout_width="match_parent"

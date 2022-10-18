@@ -1,6 +1,11 @@
 package com.example.myapplication;
 
 public class Company {
+    private String name;
+    private String businessId;
+    private String registrationDate;
+    private String companyForm;
+
     public String getName() {
         return name;
     }
@@ -9,10 +14,10 @@ public class Company {
         this.name = name;
     }
 
-    private String name;
-    private String businessId;
-    private String registrationDate;
-    private String companyForm;
+    //private String name;
+    //private String businessId;
+    //private String registrationDate;
+    //private String companyForm;
 
     public String getBusinessId() {
         return businessId;
@@ -26,9 +31,7 @@ public class Company {
         return registrationDate;
     }
 
-    public void setRegistrationDate(String registrationDate) {
-        this.registrationDate = registrationDate;
-    }
+    public void setRegistrationDate(String registrationDate) {this.registrationDate = registrationDate;}
 
     public String getCompanyForm() {
         return companyForm;

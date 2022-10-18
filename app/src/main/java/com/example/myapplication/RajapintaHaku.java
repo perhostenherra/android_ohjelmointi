@@ -54,6 +54,7 @@ public class RajapintaHaku extends AppCompatActivity {
 
         ArrayList<Company> companies = new ArrayList<Company>();
         textView = findViewById(R.id.textView);
+        recyclerView = findViewById(R.id.recycleView);
         JsonObjectRequest jor = new JsonObjectRequest(
                 Request.Method.GET, // the HTTP method to use
                 url, // url
