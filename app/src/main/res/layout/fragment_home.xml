@@ -81,6 +81,15 @@
             android:text="Search"
             app:backgroundTint="@android:color/holo_purple" />
 
+        <Button
+            android:id="@+id/tenttiButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:text="Tentti"
+            app:backgroundTint="@android:color/holo_purple" />
+
 
     </TableRow>
 

@@ -16,9 +16,11 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.myapplication.PeliDemo;
 import com.example.myapplication.R;
 import com.example.myapplication.RajapintaHaku;
+import com.example.myapplication.Tentti;
 import com.example.myapplication.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
+    private Button tenttiButton;
     private Button peliDemoButton;
     private Button welcomeButton;
     private Button searchButton;
@@ -36,6 +38,7 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        tenttiButton = root.findViewById(R.id.tenttiButton);
         welcomeButton = root.findViewById(R.id.hello_button);
         welcomeTextView = root.findViewById(R.id.textView);
         peliDemoButton = root.findViewById(R.id.peliDemoButton);
@@ -65,6 +68,12 @@ public class HomeFragment extends Fragment {
 
         });
 
+        tenttiButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                handleClickEvents(v);
+            }
+        });
+
         //final TextView textView = binding.textHome;
         //homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
@@ -83,6 +92,12 @@ public class HomeFragment extends Fragment {
                 Intent i = new Intent(getActivity(), PeliDemo.class);
                 startActivity(i);
 
+
+                break;
+
+            case R.id.tenttiButton:
+                Intent i3 = new Intent(getActivity(), Tentti.class);
+                startActivity(i3);
 
                 break;
 

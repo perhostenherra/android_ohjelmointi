@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="">
+
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:autoSizeTextType="uniform"
+        android:background="@color/Purple"
+        android:fontFamily="@font/concrete"
+        android:gravity="center"
+        android:text="Tentti:"
+        android:textColor="@color/WhiteSmoke"
+        android:textSize="10dp" />
+
+</LinearLayout>
