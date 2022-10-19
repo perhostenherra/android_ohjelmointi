@@ -28,6 +28,7 @@ public class RajapintaHaku extends AppCompatActivity {
     public static final String TAG ="MyAppMessage";
     Request requestQueue;
     TextView textView;
+    RecyclerAdapter mAdapter;
     String url = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=1000&resultsFrom=0&name=suomen&companyRegistrationFrom=2000-01-01";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,9 @@ public class RajapintaHaku extends AppCompatActivity {
         ArrayList<Company> companies = new ArrayList<Company>();
         textView = findViewById(R.id.textView);
         recyclerView = findViewById(R.id.recycleView);
+
+
+
         JsonObjectRequest jor = new JsonObjectRequest(
                 Request.Method.GET, // the HTTP method to use
                 url, // url
@@ -80,6 +84,8 @@ public class RajapintaHaku extends AppCompatActivity {
 
 
                                 companies.add(currentCompany);
+                                mAdapter = new RecyclerAdapter(companies);
+                                recyclerView.setAdapter(mAdapter);
 
                             }
                         } catch (JSONException e) {
@@ -95,8 +101,11 @@ public class RajapintaHaku extends AppCompatActivity {
                 });
 
             //jor.setRetryPolicy();
+
             jor.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 1, 1.0f));
             queue.add(jor);
+
+
     }
 
 
