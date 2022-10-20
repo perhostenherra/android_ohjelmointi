@@ -31,6 +31,14 @@
         android:gravity="center"
         android:textSize="20dp" /-->
 
+    <TextView
+        android:id="@+id/textResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="50dp"
+        android:textColor="@color/Black"/>
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_gravity="center"

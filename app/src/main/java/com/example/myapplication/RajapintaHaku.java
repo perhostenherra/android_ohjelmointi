@@ -32,6 +32,7 @@ public class RajapintaHaku extends AppCompatActivity {
     ProgressBar progressBar;
     TextView textError;
     TextView textView;
+    TextView textResults;
     RecyclerAdapter mAdapter;
     String url = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=1000&resultsFrom=0&name=suomen&companyRegistrationFrom=2000-01-01";
     @Override
@@ -50,6 +51,7 @@ public class RajapintaHaku extends AppCompatActivity {
                 url = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=1000&resultsFrom=0&name="+searchTerm+"&companyRegistrationFrom=2000-01-01";
             }
             Log.e(TAG,url);
+
         }
             // get data via the key
 
@@ -62,6 +64,7 @@ public class RajapintaHaku extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycleView);
         progressBar = findViewById(R.id.progressBar);
         textError = findViewById(R.id.textError);
+        textResults = findViewById(R.id.textResults);
 
 
         JsonObjectRequest jor = new JsonObjectRequest(
@@ -92,6 +95,7 @@ public class RajapintaHaku extends AppCompatActivity {
                                 mAdapter = new RecyclerAdapter(companies);
                                 recyclerView.setAdapter(mAdapter);
                                 progressBar.setVisibility(View.GONE);
+
 
                             }
                         } catch (JSONException e) {
