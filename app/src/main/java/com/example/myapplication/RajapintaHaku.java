@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +29,8 @@ public class RajapintaHaku extends AppCompatActivity {
     private RecyclerView recyclerView;
     public static final String TAG ="MyAppMessage";
     Request requestQueue;
+    ProgressBar progressBar;
+    TextView textError;
     TextView textView;
     RecyclerAdapter mAdapter;
     String url = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=1000&resultsFrom=0&name=suomen&companyRegistrationFrom=2000-01-01";
@@ -56,7 +60,8 @@ public class RajapintaHaku extends AppCompatActivity {
         ArrayList<Company> companies = new ArrayList<Company>();
         textView = findViewById(R.id.textView);
         recyclerView = findViewById(R.id.recycleView);
-
+        progressBar = findViewById(R.id.progressBar);
+        textError = findViewById(R.id.textError);
 
 
         JsonObjectRequest jor = new JsonObjectRequest(
@@ -86,6 +91,7 @@ public class RajapintaHaku extends AppCompatActivity {
                                 companies.add(currentCompany);
                                 mAdapter = new RecyclerAdapter(companies);
                                 recyclerView.setAdapter(mAdapter);
+                                progressBar.setVisibility(View.GONE);
 
                             }
                         } catch (JSONException e) {
@@ -97,6 +103,9 @@ public class RajapintaHaku extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e(TAG,"No companies found");
+                        recyclerView.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.GONE);
+                        textError.setText("No companies found :(");
                     }
                 });
 

@@ -60,9 +60,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         TextView textViewCompanyForm = holder.textViewCompanyForm;
 
         textViewName.setText(dataSet.get(listPosition).getName());
-        textViewBusinessId.setText(dataSet.get(listPosition).getBusinessId());
-        textViewRegistrationDate.setText(dataSet.get(listPosition).getRegistrationDate());
-        textViewCompanyForm.setText(dataSet.get(listPosition).getCompanyForm());
+        textViewBusinessId.setText("Business ID: "+dataSet.get(listPosition).getBusinessId());
+        textViewRegistrationDate.setText("Registration date: "+dataSet.get(listPosition).getRegistrationDate());
+        textViewCompanyForm.setText("Company form: "+dataSet.get(listPosition).getCompanyForm());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,13 +79,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         return dataSet.size();
     }
 
-    //@Override
-    //public Filter getFilter() {}
-
-
 }
-    //public class ClickListiner{
 
-    //public click(int index);
-
-//}
