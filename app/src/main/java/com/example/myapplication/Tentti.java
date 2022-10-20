@@ -40,15 +40,15 @@ public class Tentti extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     //amount = Integer.parseInt(String.valueOf(textAmount));
-                    amount = 15;
-                    Log.e(TAG, String.valueOf(textAmount));
+                    amount = Integer.parseInt(textAmount.getText().toString());
+                    //amount = 15;
                     total = amount * 0.09968;
                     inTotal = String.valueOf(total);
                     valueText.setText(inTotal + " €");
                 }
                 catch(Exception e) {
-                    valueText.setText("Something went wrong");
-                    Log.e(TAG,"Something went wrong");
+                    valueText.setText("Valitse valuutan määrä");
+                    Log.e(TAG,"Valitse valuutan määrä");
                 }
 
 
@@ -60,15 +60,14 @@ public class Tentti extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     //amount = Integer.parseInt(String.valueOf(textAmount));
-                    amount = 50;
-                    Log.e(TAG, String.valueOf(amount));
+                    amount = Integer.parseInt(textAmount.getText().toString());
                     total = amount * 0.10288;
                     inTotal = String.valueOf(total);
                     valueText.setText(inTotal+" €");
                 }
                 catch(Exception e) {
-                    valueText.setText("Something went wrong");
-                    Log.e(TAG,"Something went wrong");
+                    valueText.setText("Valitse valuutan määrä");
+                    Log.e(TAG,"Valitse valuutan määrä");
                 }
 
 
@@ -80,15 +79,14 @@ public class Tentti extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     //amount = Integer.parseInt(String.valueOf(textAmount));
-                    amount = 100;
-                    Log.e(TAG, String.valueOf(amount));
+                    amount = Integer.parseInt(textAmount.getText().toString());
                     total = amount * 0.13440;
                     inTotal = String.valueOf(total);
                     valueText.setText(inTotal+" €");
                 }
                 catch(Exception e) {
-                    valueText.setText("Something went wrong");
-                    Log.e(TAG,"Something went wrong");
+                    valueText.setText("Valitse valuutan määrä");
+                    Log.e(TAG,"Valitse valuutan määrä");
                 }
 
             }
