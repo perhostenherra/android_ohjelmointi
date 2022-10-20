@@ -56,7 +56,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="335dp"
-        android:layout_height="254dp"
+        android:layout_height="226dp"
         app:srcCompat="@drawable/pika" />
 
     <TableRow
@@ -81,14 +81,6 @@
             android:text="Search"
             app:backgroundTint="@android:color/holo_purple" />
 
-        <Button
-            android:id="@+id/tenttiButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="right"
-            android:text="Tentti"
-            app:backgroundTint="@android:color/holo_purple" />
 
 
     </TableRow>
@@ -106,5 +98,14 @@
         android:layout_height="wrap_content"
         app:backgroundTint="@android:color/holo_purple"
         android:text="START THE GAME" />
+
+    <Button
+        android:id="@+id/tenttiButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Currency converter"
+        app:backgroundTint="@android:color/holo_purple" />
 
 </LinearLayout>

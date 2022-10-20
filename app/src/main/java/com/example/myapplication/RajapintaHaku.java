@@ -106,6 +106,7 @@ public class RajapintaHaku extends AppCompatActivity {
             queue.add(jor);
 
 
+
     }
 
 

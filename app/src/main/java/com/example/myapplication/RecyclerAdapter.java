@@ -23,12 +23,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         TextView textViewCompanyForm;
 
 
+
         public MyViewHolder(View itemView) {
             super(itemView);
             this.textViewName = (TextView) itemView.findViewById(R.id.textViewName);
-            this.itemPosition = (TextView) itemView.findViewById(R.id.item_position);
-            //this.textViewVersion = (TextView) itemView.findViewById(R.id.textViewVersion);
-            //this.imageViewIcon = (ImageView) itemView.findViewById(R.id.imageView);
+            this.textViewBusinessId = (TextView) itemView.findViewById(R.id.textViewBusinessId);
+            this.textViewRegistrationDate = (TextView) itemView.findViewById(R.id.textViewRegistrationDate);
+            this.textViewCompanyForm = (TextView) itemView.findViewById(R.id.textViewCompanyForm);
         }
     }
 
@@ -43,24 +44,33 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item, parent, false);
 
-        //view.setOnClickListener(RajapintaHaku.OnClickListener);
 
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
+
     }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
 
+
         TextView textViewName = holder.textViewName;
-        //TextView textViewBusinessId = holder.textViewBusinessId;
-        //TextView textViewRegistrationDate= holder.textViewRegistrationDate;
-        //TextView textViewCompanyForm = holder.textViewCompanyForm;
+        TextView textViewBusinessId = holder.textViewBusinessId;
+        TextView textViewRegistrationDate= holder.textViewRegistrationDate;
+        TextView textViewCompanyForm = holder.textViewCompanyForm;
 
         textViewName.setText(dataSet.get(listPosition).getName());
-        //textViewBusinessId.setText(dataSet.get(listPosition).getBusinessId());
-        //textViewRegistrationDate.setText(dataSet.get(listPosition).getRegistrationDate());
-        //textViewCompanyForm.setText(dataSet.get(listPosition).getCompanyForm());
+        textViewBusinessId.setText(dataSet.get(listPosition).getBusinessId());
+        textViewRegistrationDate.setText(dataSet.get(listPosition).getRegistrationDate());
+        textViewCompanyForm.setText(dataSet.get(listPosition).getCompanyForm());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                View hiddenView = holder.itemView.findViewById(R.id.lytHidden);
+                hiddenView.setVisibility( hiddenView.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+            }
+        });
 
     }
 
@@ -73,5 +83,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     //public Filter getFilter() {}
 
 
-
 }
+    //public class ClickListiner{
+
+    //public click(int index);
+
+//}
