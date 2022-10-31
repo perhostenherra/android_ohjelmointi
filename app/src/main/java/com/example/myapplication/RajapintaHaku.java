@@ -2,8 +2,13 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +47,8 @@ public class RajapintaHaku extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
+
+
 
 
         Bundle extras = getIntent().getExtras();
@@ -120,7 +127,29 @@ public class RajapintaHaku extends AppCompatActivity {
 
 
 
-    }
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //Log.d("newText1",query);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //Log.d("newText",newText);
+                mAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return true;
+    }
 
 }

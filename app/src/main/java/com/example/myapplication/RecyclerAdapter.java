@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +13,8 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
     private ArrayList<Company> dataSet;
-    public static final String TAG ="MyAppMessage";
+    private ArrayList<Company> FullList;
+    public static final String TAG = "MyAppMessage";
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -21,7 +23,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         TextView textViewBusinessId;
         TextView textViewRegistrationDate;
         TextView textViewCompanyForm;
-
 
 
         public MyViewHolder(View itemView) {
@@ -35,6 +36,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     public RecyclerAdapter(ArrayList<Company> data) {
         this.dataSet = data;
+        FullList = new ArrayList<>(data);
         Log.e(TAG, String.valueOf(dataSet.size()));
     }
 
@@ -56,19 +58,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
         TextView textViewName = holder.textViewName;
         TextView textViewBusinessId = holder.textViewBusinessId;
-        TextView textViewRegistrationDate= holder.textViewRegistrationDate;
+        TextView textViewRegistrationDate = holder.textViewRegistrationDate;
         TextView textViewCompanyForm = holder.textViewCompanyForm;
 
         textViewName.setText(dataSet.get(listPosition).getName());
-        textViewBusinessId.setText("Business ID: "+dataSet.get(listPosition).getBusinessId());
-        textViewRegistrationDate.setText("Registration date: "+dataSet.get(listPosition).getRegistrationDate());
-        textViewCompanyForm.setText("Company form: "+dataSet.get(listPosition).getCompanyForm());
+        textViewBusinessId.setText("Business ID: " + dataSet.get(listPosition).getBusinessId());
+        textViewRegistrationDate.setText("Registration date: " + dataSet.get(listPosition).getRegistrationDate());
+        textViewCompanyForm.setText("Company form: " + dataSet.get(listPosition).getCompanyForm());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 View hiddenView = holder.itemView.findViewById(R.id.lytHidden);
-                hiddenView.setVisibility( hiddenView.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
+                hiddenView.setVisibility(hiddenView.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
             }
         });
 
@@ -78,6 +80,35 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public int getItemCount() {
         return dataSet.size();
     }
+
+    public Filter getFilter() { return Searched_Filter; }
+
+    private Filter Searched_Filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<Company> filteredList = new ArrayList<>();
+            if (constraint==null || constraint.length()==0){
+                filteredList.addAll(FullList);
+            } else {
+                String filteredPattern = constraint.toString().toLowerCase().trim();
+                for (Company item: FullList) {
+                    if(item.getName().toLowerCase().contains(filteredPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            dataSet.clear();
+            dataSet.addAll((ArrayList) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
 }
 
