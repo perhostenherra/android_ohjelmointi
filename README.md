@@ -7,3 +7,4 @@ Sisältää seuraavat harjoitustehtävät:
   - Sijainnin ja osoitetietojen haku
   - Lentokonetila ON/OFF
   - Yritysten haku YTJ-rajapinnasta
+  - Valuuttamuunnin
