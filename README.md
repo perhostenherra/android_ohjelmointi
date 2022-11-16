@@ -1,7 +1,7 @@
 # Android-kurssin kurssityö 2022. 
 
 ### Toteutettu Android Studiolla.
-Käytetty ohjelmointikieli: Java.
+Käytetty ohjelmointikieli: _Java_
 Sisältää seuraavat harjoitustehtävät:
   * Tervehdys
   * Peli
