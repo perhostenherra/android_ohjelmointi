@@ -3,8 +3,8 @@
 ### Toteutettu Android Studiolla.
 Käytetty ohjelmointikieli: Java.
 Sisältää seuraavat harjoitustehtävät:
-  - Tervehdys
-  - Peli
+  * Tervehdys
+  * Peli
   - Kieliversiot: suomi ja englanti
   - Ajastin
   - Sijainnin ja osoitetietojen haku
