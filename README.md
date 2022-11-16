@@ -5,10 +5,10 @@ Käytetty ohjelmointikieli: Java.
 Sisältää seuraavat harjoitustehtävät:
   * Tervehdys
   * Peli
-  - Kieliversiot: suomi ja englanti
-  - Ajastin
-  - Sijainnin ja osoitetietojen haku
-  - Lentokonetila ON/OFF
-  - Yritysten haku YTJ-rajapinnasta
+  * Kieliversiot: suomi ja englanti
+  * Ajastin
+  * Sijainnin ja osoitetietojen haku
+  * Lentokonetila ON/OFF
+  * Yritysten haku YTJ-rajapinnasta
     - Hakutulosten suodatus
-  - Valuuttamuunnin
+  * Valuuttamuunnin
